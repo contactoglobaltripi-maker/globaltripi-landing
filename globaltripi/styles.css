@@ -1,0 +1,556 @@
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Navigation bar */
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 2px solid #e5e5e5;
+  padding: 0.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  height: 40px;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #4CAF50;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #4CAF50;
+}
+
+/* Hero carousel */
+.hero {
+  position: relative;
+  overflow: hidden;
+  height: 60vh;
+  max-height: 600px;
+}
+
+.carousel {
+  position: relative;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.caption {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  max-width: 80%;
+}
+
+.caption h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.caption p {
+  font-size: 1rem;
+}
+
+/* CTA button in hero section */
+.cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.5rem;
+  background-color: #4CAF50;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #3a923f;
+}
+
+.carousel-controls {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.carousel-controls span {
+  font-size: 2rem;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.3rem 0.6rem;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: all;
+  user-select: none;
+}
+
+/* Sections */
+section {
+  padding: 4rem 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #4CAF50;
+  text-align: center;
+}
+
+/* Cotizador form */
+.cotizador form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.checkboxes {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.submit-group {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}
+
+.submit-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #3a923f;
+}
+
+/* Beneficios section */
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.beneficio {
+  background: #f7f7f7;
+  padding: 1.5rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.beneficio h3 {
+  color: #4CAF50;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+/* Contacto section */
+/* Contacto section */
+.contacto-info p {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.contacto-info a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.contacto-info a:hover {
+  text-decoration: underline;
+}
+
+/* Centra la frase de contacto debajo del título de la sección de contacto */
+/* Centra completamente la frase de contacto y ocupa el ancho completo */
+.contact-tagline {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto 1rem;
+}
+
+/* Admin section */
+.admin {
+  text-align: center;
+}
+
+.download-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+  background-color: #3a923f;
+}
+
+/* Estilos para el popup de QR utilizado cuando se seleccionan grupos mayores a 10 pasajeros */
+.qr-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+}
+
+.qr-popup-content {
+  position: relative;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.qr-popup-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.qr-popup-content .close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Contenedor y entradas para las edades de los pasajeros */
+/* El contenedor utiliza un grid para optimizar el espacio y colocar varias entradas en columnas */
+#edadContainer {
+  /* El contenedor ocupa todo el ancho de la cuadrícula del formulario para ofrecer más espacio */
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+}
+
+#edadContainer .age-entry {
+  display: flex;
+  flex-direction: column;
+}
+
+#edadContainer .age-entry .age-output {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Footer redesigned with green accent line */
+.footer {
+  background-color: #f9f9f9;
+  border-top: 4px solid #4CAF50;
+  padding: 3rem 1rem 2rem;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-section h4 {
+  color: #4CAF50;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.footer-section p {
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section a:hover {
+  color: #4CAF50;
+  text-decoration: underline;
+}
+
+.social-links li {
+  display: inline-block;
+  margin-right: 0.8rem;
+}
+
+.social-links a {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Newsletter form */
+.newsletter-form {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.newsletter-form button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.newsletter-form button:hover {
+  background-color: #3a923f;
+}
+
+.cta {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ============================================================
+ *  New combined hero and cotizador layout
+ *  The hero slider and the quote request form are displayed
+ *  side by side on large screens so that both sections are
+ *  fully visible on a single viewport. On small screens the
+ *  layout stacks vertically.
+ */
+.hero-cotizador {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2rem;
+  /* Reduce the vertical padding so more of the form fits within the viewport */
+  padding: 1rem 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  /* Reduce the minimum height of this section so both the hero and form fit comfortably on common screen sizes */
+  min-height: 60vh;
+}
+
+.hero-cotizador .hero-slider {
+  flex: 1 1 50%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Use specificity to override default slide positioning within the combined layout */
+.hero-cotizador .hero-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.hero-cotizador .hero-slider .slide.active {
+  opacity: 1;
+}
+
+.hero-cotizador .hero-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-cotizador .hero-slider .caption {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  max-width: 80%;
+}
+
+.hero-cotizador .quote-form-container {
+  flex: 1 1 45%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Reduce padding inside the form container to save vertical space */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-cotizador .quote-form-container h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #4CAF50;
+  text-align: center;
+}
+
+.hero-cotizador .quote-form-container form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .hero-cotizador {
+    flex-direction: column;
+    min-height: auto;
+    gap: 1rem;
+  }
+  .hero-cotizador .hero-slider {
+    flex: 1 1 auto;
+    height: 40vh;
+  }
+  .hero-cotizador .quote-form-container {
+    flex: 1 1 auto;
+    padding: 1.5rem 1rem;
+  }
+  .hero-cotizador .quote-form-container form {
+    grid-template-columns: 1fr;
+  }
+}

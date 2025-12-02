@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobalTripi – Asistencia y Seguro de Viaje</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation bar -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo-container">
+          <img src="assets/logo.png" alt="GlobalTripi Logo" class="logo">
+          <span class="brand-name">GlobalTripi</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#cotizador">Cotizar</a></li>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Combined hero and cotizador section: display the banner and form side by side on large screens -->
+  <section class="hero-cotizador" id="cotizador">
+    <!-- Hero slider -->
+    <div class="hero-slider">
+      <div class="carousel" id="heroCarousel">
+        <div class="slide active">
+          <img src="assets/hero1.png" alt="Ciudad icónica" loading="lazy">
+          <div class="caption">
+            <h1>Compara y protege tu viaje</h1>
+            <p>Encuentra el mejor seguro y asistencia para tus vacaciones o negocios</p>
+            <a href="#cotizador" class="cta-button">Cotiza ahora</a>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="assets/hero2.png" alt="Playa paradisíaca" loading="lazy">
+          <div class="caption">
+            <h1>Descansa y desconecta</h1>
+            <p>Nosotros cuidamos de ti mientras exploras</p>
+            <a href="#cotizador" class="cta-button">Cotiza ahora</a>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="assets/hero3.png" alt="Viaje de negocios" loading="lazy">
+          <div class="caption">
+            <h1>Viajes de negocios sin estrés</h1>
+            <p>Concéntrate en tus objetivos, nosotros te protegemos</p>
+            <a href="#cotizador" class="cta-button">Cotiza ahora</a>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <span class="prev">❮</span>
+          <span class="next">❯</span>
+        </div>
+      </div>
+    </div>
+    <!-- Quote form container -->
+    <div class="quote-form-container">
+      <h2>Solicita tu Cotización</h2>
+      <form id="quoteForm">
+      <!-- Nueva selección de origen: lista de países excepto los sancionados por OFAC -->
+      <div class="form-group">
+        <label for="origen">Origen</label>
+        <select id="origen" name="origen" required>
+          <option value="" disabled selected>País de origen</option>
+          <!-- Lista de países permitidos -->
+          <option value="Albania">Albania</option>
+          <option value="Algeria">Algeria</option>
+          <option value="Andorra">Andorra</option>
+          <option value="Angola">Angola</option>
+          <option value="Antigua y Barbuda">Antigua y Barbuda</option>
+          <option value="Argentina">Argentina</option>
+          <option value="Armenia">Armenia</option>
+          <option value="Australia">Australia</option>
+          <option value="Austria">Austria</option>
+          <option value="Azerbaiyán">Azerbaiyán</option>
+          <option value="Bahamas">Bahamas</option>
+          <option value="Baréin">Baréin</option>
+          <option value="Bangladés">Bangladés</option>
+          <option value="Barbados">Barbados</option>
+          <option value="Bélgica">Bélgica</option>
+          <option value="Belice">Belice</option>
+          <option value="Benín">Benín</option>
+          <option value="Bután">Bután</option>
+          <option value="Bolivia">Bolivia</option>
+          <option value="Bosnia y Herzegovina">Bosnia y Herzegovina</option>
+          <option value="Botsuana">Botsuana</option>
+          <option value="Brasil">Brasil</option>
+          <option value="Brunéi">Brunéi</option>
+          <option value="Bulgaria">Bulgaria</option>
+          <option value="Burkina Faso">Burkina Faso</option>
+          <option value="Burundi">Burundi</option>
+          <option value="Cabo Verde">Cabo Verde</option>
+          <option value="Camboya">Camboya</option>
+          <option value="Camerún">Camerún</option>
+          <option value="Canadá">Canadá</option>
+          <option value="Chad">Chad</option>
+          <option value="Chile">Chile</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Comoras">Comoras</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Costa de Marfil">Costa de Marfil</option>
+          <option value="Croacia">Croacia</option>
+          <option value="República Checa">República Checa</option>
+          <option value="Dinamarca">Dinamarca</option>
+          <option value="Yibuti">Yibuti</option>
+          <option value="Dominica">Dominica</option>
+          <option value="República Dominicana">República Dominicana</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="Egipto">Egipto</option>
+          <option value="El Salvador">El Salvador</option>
+          <option value="Guinea Ecuatorial">Guinea Ecuatorial</option>
+          <option value="Estonia">Estonia</option>
+          <option value="Esuatini">Esuatini</option>
+          <option value="Fiyi">Fiyi</option>
+          <option value="Finlandia">Finlandia</option>
+          <option value="Francia">Francia</option>
+          <option value="Gabón">Gabón</option>
+          <option value="Gambia">Gambia</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Alemania">Alemania</option>
+          <option value="Ghana">Ghana</option>
+          <option value="Grecia">Grecia</option>
+          <option value="Granada">Granada</option>
+          <option value="Guatemala">Guatemala</option>
+          <option value="Guinea">Guinea</option>
+          <option value="Guinea-Bisáu">Guinea-Bisáu</option>
+          <option value="Guyana">Guyana</option>
+          <option value="Honduras">Honduras</option>
+          <option value="Hungría">Hungría</option>
+          <option value="Islandia">Islandia</option>
+          <option value="India">India</option>
+          <option value="Indonesia">Indonesia</option>
+          <option value="Irlanda">Irlanda</option>
+          <option value="Israel">Israel</option>
+          <option value="Italia">Italia</option>
+          <option value="Jamaica">Jamaica</option>
+          <option value="Japón">Japón</option>
+          <option value="Jordania">Jordania</option>
+          <option value="Kazajistán">Kazajistán</option>
+          <option value="Kenia">Kenia</option>
+          <option value="Kiribati">Kiribati</option>
+          <option value="Kuwait">Kuwait</option>
+          <option value="Kirguistán">Kirguistán</option>
+          <option value="Laos">Laos</option>
+          <option value="Letonia">Letonia</option>
+          <option value="Lesoto">Lesoto</option>
+          <option value="Liberia">Liberia</option>
+          <option value="Liechtenstein">Liechtenstein</option>
+          <option value="Lituania">Lituania</option>
+          <option value="Luxemburgo">Luxemburgo</option>
+          <option value="Madagascar">Madagascar</option>
+          <option value="Malaui">Malaui</option>
+          <option value="Malasia">Malasia</option>
+          <option value="Maldivas">Maldivas</option>
+          <option value="Malta">Malta</option>
+          <option value="Islas Marshall">Islas Marshall</option>
+          <option value="Mauritania">Mauritania</option>
+          <option value="Mauricio">Mauricio</option>
+          <option value="México">México</option>
+          <option value="Micronesia">Micronesia</option>
+          <option value="Moldavia">Moldavia</option>
+          <option value="Mónaco">Mónaco</option>
+          <option value="Mongolia">Mongolia</option>
+          <option value="Montenegro">Montenegro</option>
+          <option value="Marruecos">Marruecos</option>
+          <option value="Mozambique">Mozambique</option>
+          <option value="Namibia">Namibia</option>
+          <option value="Nauru">Nauru</option>
+          <option value="Nepal">Nepal</option>
+          <option value="Países Bajos">Países Bajos</option>
+          <option value="Nueva Zelanda">Nueva Zelanda</option>
+          <option value="Níger">Níger</option>
+          <option value="Nigeria">Nigeria</option>
+          <option value="Macedonia del Norte">Macedonia del Norte</option>
+          <option value="Noruega">Noruega</option>
+          <option value="Omán">Omán</option>
+          <option value="Pakistán">Pakistán</option>
+          <option value="Palaos">Palaos</option>
+          <option value="Panamá">Panamá</option>
+          <option value="Papúa Nueva Guinea">Papúa Nueva Guinea</option>
+          <option value="Paraguay">Paraguay</option>
+          <option value="Perú">Perú</option>
+          <option value="Filipinas">Filipinas</option>
+          <option value="Polonia">Polonia</option>
+          <option value="Portugal">Portugal</option>
+          <option value="Catar">Catar</option>
+          <option value="Rumania">Rumania</option>
+          <option value="Ruanda">Ruanda</option>
+          <option value="San Cristóbal y Nieves">San Cristóbal y Nieves</option>
+          <option value="Santa Lucía">Santa Lucía</option>
+          <option value="San Vicente y las Granadinas">San Vicente y las Granadinas</option>
+          <option value="Samoa">Samoa</option>
+          <option value="San Marino">San Marino</option>
+          <option value="Santo Tomé y Príncipe">Santo Tomé y Príncipe</option>
+          <option value="Arabia Saudita">Arabia Saudita</option>
+          <option value="Senegal">Senegal</option>
+          <option value="Serbia">Serbia</option>
+          <option value="Seychelles">Seychelles</option>
+          <option value="Sierra Leona">Sierra Leona</option>
+          <option value="Singapur">Singapur</option>
+          <option value="Eslovaquia">Eslovaquia</option>
+          <option value="Eslovenia">Eslovenia</option>
+          <option value="Islas Salomón">Islas Salomón</option>
+          <option value="Sudáfrica">Sudáfrica</option>
+          <option value="España">España</option>
+          <option value="Sri Lanka">Sri Lanka</option>
+          <option value="Surinam">Surinam</option>
+          <option value="Suecia">Suecia</option>
+          <option value="Suiza">Suiza</option>
+          <option value="Tayikistán">Tayikistán</option>
+          <option value="Tanzania">Tanzania</option>
+          <option value="Tailandia">Tailandia</option>
+          <option value="Timor Oriental">Timor Oriental</option>
+          <option value="Togo">Togo</option>
+          <option value="Tonga">Tonga</option>
+          <option value="Trinidad y Tobago">Trinidad y Tobago</option>
+          <option value="Túnez">Túnez</option>
+          <option value="Turquía">Turquía</option>
+          <option value="Turkmenistán">Turkmenistán</option>
+          <option value="Tuvalu">Tuvalu</option>
+          <option value="Uganda">Uganda</option>
+          <option value="Ucrania">Ucrania</option>
+          <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
+          <option value="Reino Unido">Reino Unido</option>
+          <option value="Estados Unidos">Estados Unidos</option>
+          <option value="Uruguay">Uruguay</option>
+          <option value="Uzbekistán">Uzbekistán</option>
+          <option value="Vanuatu">Vanuatu</option>
+          <option value="Ciudad del Vaticano">Ciudad del Vaticano</option>
+          <option value="Vietnam">Vietnam</option>
+          <option value="Zambia">Zambia</option>
+        </select>
+      </div>
+
+      <!-- Nueva selección de destino: lista de países permitidos (igual que origen) -->
+      <div class="form-group">
+        <label for="destino">Destino</label>
+        <select id="destino" name="destino" required>
+          <option value="" disabled selected>País de destino</option>
+          <!-- Lista de países permitidos -->
+          <option value="Albania">Albania</option>
+          <option value="Algeria">Algeria</option>
+          <option value="Andorra">Andorra</option>
+          <option value="Angola">Angola</option>
+          <option value="Antigua y Barbuda">Antigua y Barbuda</option>
+          <option value="Argentina">Argentina</option>
+          <option value="Armenia">Armenia</option>
+          <option value="Australia">Australia</option>
+          <option value="Austria">Austria</option>
+          <option value="Azerbaiyán">Azerbaiyán</option>
+          <option value="Bahamas">Bahamas</option>
+          <option value="Baréin">Baréin</option>
+          <option value="Bangladés">Bangladés</option>
+          <option value="Barbados">Barbados</option>
+          <option value="Bélgica">Bélgica</option>
+          <option value="Belice">Belice</option>
+          <option value="Benín">Benín</option>
+          <option value="Bután">Bután</option>
+          <option value="Bolivia">Bolivia</option>
+          <option value="Bosnia y Herzegovina">Bosnia y Herzegovina</option>
+          <option value="Botsuana">Botsuana</option>
+          <option value="Brasil">Brasil</option>
+          <option value="Brunéi">Brunéi</option>
+          <option value="Bulgaria">Bulgaria</option>
+          <option value="Burkina Faso">Burkina Faso</option>
+          <option value="Burundi">Burundi</option>
+          <option value="Cabo Verde">Cabo Verde</option>
+          <option value="Camboya">Camboya</option>
+          <option value="Camerún">Camerún</option>
+          <option value="Canadá">Canadá</option>
+          <option value="Chad">Chad</option>
+          <option value="Chile">Chile</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Comoras">Comoras</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Costa de Marfil">Costa de Marfil</option>
+          <option value="Croacia">Croacia</option>
+          <option value="República Checa">República Checa</option>
+          <option value="Dinamarca">Dinamarca</option>
+          <option value="Yibuti">Yibuti</option>
+          <option value="Dominica">Dominica</option>
+          <option value="República Dominicana">República Dominicana</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="Egipto">Egipto</option>
+          <option value="El Salvador">El Salvador</option>
+          <option value="Guinea Ecuatorial">Guinea Ecuatorial</option>
+          <option value="Estonia">Estonia</option>
+          <option value="Esuatini">Esuatini</option>
+          <option value="Fiyi">Fiyi</option>
+          <option value="Finlandia">Finlandia</option>
+          <option value="Francia">Francia</option>
+          <option value="Gabón">Gabón</option>
+          <option value="Gambia">Gambia</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Alemania">Alemania</option>
+          <option value="Ghana">Ghana</option>
+          <option value="Grecia">Grecia</option>
+          <option value="Granada">Granada</option>
+          <option value="Guatemala">Guatemala</option>
+          <option value="Guinea">Guinea</option>
+          <option value="Guinea-Bisáu">Guinea-Bisáu</option>
+          <option value="Guyana">Guyana</option>
+          <option value="Honduras">Honduras</option>
+          <option value="Hungría">Hungría</option>
+          <option value="Islandia">Islandia</option>
+          <option value="India">India</option>
+          <option value="Indonesia">Indonesia</option>
+          <option value="Irlanda">Irlanda</option>
+          <option value="Israel">Israel</option>
+          <option value="Italia">Italia</option>
+          <option value="Jamaica">Jamaica</option>
+          <option value="Japón">Japón</option>
+          <option value="Jordania">Jordania</option>
+          <option value="Kazajistán">Kazajistán</option>
+          <option value="Kenia">Kenia</option>
+          <option value="Kiribati">Kiribati</option>
+          <option value="Kuwait">Kuwait</option>
+          <option value="Kirguistán">Kirguistán</option>
+          <option value="Laos">Laos</option>
+          <option value="Letonia">Letonia</option>
+          <option value="Lesoto">Lesoto</option>
+          <option value="Liberia">Liberia</option>
+          <option value="Liechtenstein">Liechtenstein</option>
+          <option value="Lituania">Lituania</option>
+          <option value="Luxemburgo">Luxemburgo</option>
+          <option value="Madagascar">Madagascar</option>
+          <option value="Malaui">Malaui</option>
+          <option value="Malasia">Malasia</option>
+          <option value="Maldivas">Maldivas</option>
+          <option value="Malta">Malta</option>
+          <option value="Islas Marshall">Islas Marshall</option>
+          <option value="Mauritania">Mauritania</option>
+          <option value="Mauricio">Mauricio</option>
+          <option value="México">México</option>
+          <option value="Micronesia">Micronesia</option>
+          <option value="Moldavia">Moldavia</option>
+          <option value="Mónaco">Mónaco</option>
+          <option value="Mongolia">Mongolia</option>
+          <option value="Montenegro">Montenegro</option>
+          <option value="Marruecos">Marruecos</option>
+          <option value="Mozambique">Mozambique</option>
+          <option value="Namibia">Namibia</option>
+          <option value="Nauru">Nauru</option>
+          <option value="Níger">Níger</option>
+          <option value="Nigeria">Nigeria</option>
+          <option value="Macedonia del Norte">Macedonia del Norte</option>
+          <option value="Noruega">Noruega</option>
+          <option value="Omán">Omán</option>
+          <option value="Pakistán">Pakistán</option>
+          <option value="Palaos">Palaos</option>
+          <option value="Panamá">Panamá</option>
+          <option value="Papúa Nueva Guinea">Papúa Nueva Guinea</option>
+          <option value="Paraguay">Paraguay</option>
+          <option value="Perú">Perú</option>
+          <option value="Filipinas">Filipinas</option>
+          <option value="Polonia">Polonia</option>
+          <option value="Portugal">Portugal</option>
+          <option value="Catar">Catar</option>
+          <option value="Rumania">Rumania</option>
+          <option value="Ruanda">Ruanda</option>
+          <option value="San Cristóbal y Nieves">San Cristóbal y Nieves</option>
+          <option value="Santa Lucía">Santa Lucía</option>
+          <option value="San Vicente y las Granadinas">San Vicente y las Granadinas</option>
+          <option value="Samoa">Samoa</option>
+          <option value="San Marino">San Marino</option>
+          <option value="Santo Tomé y Príncipe">Santo Tomé y Príncipe</option>
+          <option value="Arabia Saudita">Arabia Saudita</option>
+          <option value="Senegal">Senegal</option>
+          <option value="Serbia">Serbia</option>
+          <option value="Seychelles">Seychelles</option>
+          <option value="Sierra Leona">Sierra Leona</option>
+          <option value="Singapur">Singapur</option>
+          <option value="Eslovaquia">Eslovaquia</option>
+          <option value="Eslovenia">Eslovenia</option>
+          <option value="Islas Salomón">Islas Salomón</option>
+          <option value="Sudáfrica">Sudáfrica</option>
+          <option value="España">España</option>
+          <option value="Sri Lanka">Sri Lanka</option>
+          <option value="Surinam">Surinam</option>
+          <option value="Suecia">Suecia</option>
+          <option value="Suiza">Suiza</option>
+          <option value="Tayikistán">Tayikistán</option>
+          <option value="Tanzania">Tanzania</option>
+          <option value="Tailandia">Tailandia</option>
+          <option value="Timor Oriental">Timor Oriental</option>
+          <option value="Togo">Togo</option>
+          <option value="Tonga">Tonga</option>
+          <option value="Trinidad y Tobago">Trinidad y Tobago</option>
+          <option value="Túnez">Túnez</option>
+          <option value="Turquía">Turquía</option>
+          <option value="Turkmenistán">Turkmenistán</option>
+          <option value="Tuvalu">Tuvalu</option>
+          <option value="Uganda">Uganda</option>
+          <option value="Ucrania">Ucrania</option>
+          <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
+          <option value="Reino Unido">Reino Unido</option>
+          <option value="Estados Unidos">Estados Unidos</option>
+          <option value="Uruguay">Uruguay</option>
+          <option value="Uzbekistán">Uzbekistán</option>
+          <option value="Vanuatu">Vanuatu</option>
+          <option value="Ciudad del Vaticano">Ciudad del Vaticano</option>
+          <option value="Vietnam">Vietnam</option>
+          <option value="Zambia">Zambia</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="pasajeros">Pasajeros</label>
+        <select id="pasajeros" name="pasajeros" required>
+          <option value="" disabled selected>¿Cuántas personas?</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="more">Más de 10</option>
+        </select>
+      </div>
+
+      <!-- Contenedor de edades: se poblará dinámicamente según el número de pasajeros -->
+      <div class="form-group" id="edadContainer"></div>
+      <div class="form-group">
+        <label for="fechaInicio">Fecha de salida</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" required>
+      </div>
+      <div class="form-group">
+        <label for="fechaFin">Fecha de regreso</label>
+        <input type="date" id="fechaFin" name="fechaFin" required>
+      </div>
+      <!-- Se reemplaza el campo de WhatsApp por el correo electrónico -->
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="Ej. usuario@correo.com" required>
+      </div>
+      <div class="form-group">
+        <span class="checkbox-title">¿Deseas SIM de datos internacional?</span>
+        <div class="checkboxes">
+          <label><input type="checkbox" name="sim"> SIM física</label>
+          <label><input type="checkbox" name="esim"> eSIM virtual</label>
+        </div>
+      </div>
+      <!-- La selección de región se elimina para simplificar el formulario y dar flexibilidad a futuros comparadores -->
+        <div class="form-group submit-group">
+          <button type="submit" class="submit-btn">Solicitar cotización</button>
+        </div>
+      </form>
+    </div><!-- end quote-form-container -->
+  </section><!-- end hero-cotizador -->
+
+  <!-- Beneficios section -->
+  <section id="beneficios" class="beneficios">
+    <h2>¿Por qué elegir GlobalTripi?</h2>
+    <div class="beneficios-grid">
+      <div class="beneficio">
+        <h3>Seguridad en cada paso</h3>
+        <p>Nuestros planes te protegen en cualquier parte del mundo, durante vacaciones o negocios, para que disfrutes con total tranquilidad.</p>
+      </div>
+      <div class="beneficio">
+        <h3>Asistencia 24/7</h3>
+        <p>Contamos con una red global de soporte que te acompaña en tu idioma y te asiste ante cualquier emergencia o imprevisto.</p>
+      </div>
+      <div class="beneficio">
+        <h3>Planes a tu medida</h3>
+        <p>Elige entre coberturas regionales o globales, con o sin paquetes de datos, adaptados a tu destino y necesidades.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto section -->
+  <section id="contacto" class="contacto">
+    <h2>Contacto</h2>
+    <p class="contact-tagline">¿Tienes preguntas? Escríbenos y te ayudaremos a encontrar la mejor solución para tu viaje.</p>
+    <div class="contacto-info">
+      <p><strong>Email:</strong> <a href="mailto:contacto@globaltripi.com">contacto@globaltripi.com</a></p>
+      <!-- Actualizamos el número de WhatsApp al indicado por el cliente -->
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/573208252025" target="_blank">+57 320 825 2025</a></p>
+      <!-- Eliminamos el teléfono fijo ya que se indicó que es real y no debe mostrarse -->
+      <p><strong>Síguenos:</strong>
+        <a href="#" aria-label="Facebook">Facebook</a> |
+        <a href="#" aria-label="Instagram">Instagram</a> |
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      </p>
+    </div>
+    <!-- Newsletter subscription form to capture leads -->
+    <p class="cta">¡Suscríbete a nuestro boletín para recibir novedades y promociones!</p>
+    <form id="newsletterForm" class="newsletter-form">
+      <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Tu correo electrónico" required>
+      <button type="submit">Suscribirse</button>
+    </form>
+  </section>
+
+  <!-- Panel de Administración eliminado de la vista pública.  
+       En versiones futuras se podrá habilitar un acceso restringido para el administrador. -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Quiénes somos</h4>
+        <p>GlobalTripi es tu aliado en asistencia y seguros de viaje. Nacimos para ofrecerte protección y tranquilidad en cada aventura, ya sea por vacaciones o negocios.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Misión</h4>
+        <p>Brindar a nuestros clientes la mejor comparación y asesoría en servicios de asistencia y seguros de viaje, garantizando protección integral y experiencias sin preocupaciones.</p>
+        <h4>Visión</h4>
+        <p>Ser el metacomparador de referencia en América Latina, integrando las mejores compañías de asistencia y seguros para viajar con confianza.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Redes sociales</h4>
+        <ul class="social-links">
+          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+          <li><a href="#" aria-label="Instagram">Instagram</a></li>
+          <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#" aria-label="Términos y condiciones">Términos y condiciones</a></li>
+          <li><a href="#" aria-label="Protección de datos">Protección de datos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 GlobalTripi. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Modal para cotizaciones de grupos mayores a 10 -->
+  <div id="qrPopup" class="qr-popup" style="display:none;">
+    <div class="qr-popup-content">
+      <span class="close">&times;</span>
+      <h3>¡Atención!</h3>
+      <p>Para cotizaciones de más de 10 pasajeros, por favor contacta a nuestro equipo de grupos y manejo corporativo.</p>
+      <p>Escanea el siguiente código QR para iniciar una conversación por WhatsApp:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://wa.me/573208252025&size=200x200" alt="QR WhatsApp">
+      <p><a href="https://wa.me/573208252025" target="_blank" rel="noopener noreferrer">O haz clic aquí para abrir WhatsApp</a></p>
+    </div>
+  </div>
+
+  <!-- Chat widget: sustituye YOUR_CRISP_WEBSITE_ID con tu ID de Crisp o usa otro proveedor gratuito -->
+  <script type="text/javascript">
+    /*
+    (function(){
+      window.$crisp=[];
+      window.CRISP_WEBSITE_ID="YOUR_CRISP_WEBSITE_ID";
+      var d=document;
+      var s=d.createElement("script");
+      s.src="https://client.crisp.chat/l.js";
+      s.async=1;
+      d.getElementsByTagName("head")[0].appendChild(s);
+    })();
+    */
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
