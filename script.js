@@ -98,20 +98,20 @@ document.addEventListener('DOMContentLoaded', () => {
     saved.push(data);
     localStorage.setItem('quotes', JSON.stringify(saved));
 
-    // Compose email (mailto)
-    // Dirección de correo donde se enviará el consolidado de cotizaciones
-    // Puedes modificarla según tus necesidades. Por defecto utilizamos el dominio .co
-    const adminEmail = 'contacto@globaltripi.com';
-    const subject = encodeURIComponent('Solicitud de cotización de viaje');
-    let body = 'Nueva solicitud de cotización:%0D%0A%0D%0A';
-    Object.keys(data).forEach((key) => {
-      body += `${key}: ${Array.isArray(data[key]) ? data[key].join(', ') : data[key]}%0D%0A`;
+    // Envío de la solicitud al endpoint serverless que generará un archivo Excel y enviará el correo.
+    fetch('/api/sendQuote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      if (response.ok) {
+        alert('¡Gracias! Tu solicitud ha sido enviada automáticamente.');
+      } else {
+        alert('Hubo un problema al enviar tu solicitud. Inténtalo de nuevo más tarde.');
+      }
+    }).catch(() => {
+      alert('Hubo un problema al enviar tu solicitud. Inténtalo de nuevo más tarde.');
     });
-    // Create a mailto link
-    const mailtoLink = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
-
-    // Open the mailto link in the user's email client
-    window.location.href = mailtoLink;
 
     // Llamada opcional a APIs externas para obtener cotizaciones comparadas
     // Esta función es un espacio reservado para futuras integraciones con proveedores de seguros.

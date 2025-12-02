@@ -1,0 +1,10 @@
+{
+  "name": "globaltripi-landing",
+  "version": "1.0.0",
+  "description": "Landing de GlobalTripi con funciones de envío de cotizaciones",
+  "main": "index.html",
+  "dependencies": {
+    "nodemailer": "^6.9.3",
+    "xlsx": "^0.18.5"
+  }
+}
