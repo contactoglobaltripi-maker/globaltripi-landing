@@ -424,15 +424,13 @@
           <option value="7">7</option>
           <option value="8">8</option>
           <option value="9">9</option>
-          <option value="10">10+</option>
+          <option value="10">10</option>
+          <option value="more">Más de 10</option>
         </select>
       </div>
 
-      <!-- Email moved next to pasajeros -->
-      <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" placeholder="Ej. usuario@correo.com" required>
-      </div>
+      <!-- Contenedor de edades: se poblará dinámicamente según el número de pasajeros -->
+      <div class="form-group" id="edadContainer"></div>
       <div class="form-group">
         <label for="fechaInicio">Fecha de salida</label>
         <input type="date" id="fechaInicio" name="fechaInicio" required>
@@ -441,9 +439,10 @@
         <label for="fechaFin">Fecha de regreso</label>
         <input type="date" id="fechaFin" name="fechaFin" required>
       </div>
+      <!-- Se reemplaza el campo de WhatsApp por el correo electrónico -->
       <div class="form-group">
-        <label for="whatsapp">WhatsApp</label>
-      <input type="tel" id="whatsapp" name="whatsapp" placeholder="Ej. +57 320 825 2025" pattern="^\+?[0-9 ]{7,15}$" required>
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="Ej. usuario@correo.com" required>
       </div>
       <div class="form-group">
         <span class="checkbox-title">¿Deseas SIM de datos internacional?</span>
@@ -538,6 +537,18 @@
       <p>&copy; 2025 GlobalTripi. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <!-- Modal para cotizaciones de grupos mayores a 10 -->
+  <div id="qrPopup" class="qr-popup" style="display:none;">
+    <div class="qr-popup-content">
+      <span class="close">&times;</span>
+      <h3>¡Atención!</h3>
+      <p>Para cotizaciones de más de 10 pasajeros, por favor contacta a nuestro equipo de grupos y manejo corporativo.</p>
+      <p>Escanea el siguiente código QR para iniciar una conversación por WhatsApp:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://wa.me/573208252025&size=200x200" alt="QR WhatsApp">
+      <p><a href="https://wa.me/573208252025" target="_blank" rel="noopener noreferrer">O haz clic aquí para abrir WhatsApp</a></p>
+    </div>
+  </div>
 
   <!-- Chat widget: sustituye YOUR_CRISP_WEBSITE_ID con tu ID de Crisp o usa otro proveedor gratuito -->
   <script type="text/javascript">

@@ -170,4 +170,97 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.removeChild(link);
     });
   }
+
+  /* Dinámica de edades y QR para grupos de pasajeros */
+  const pasajerosSelect = document.getElementById('pasajeros');
+  const edadContainer = document.getElementById('edadContainer');
+  const qrPopup = document.getElementById('qrPopup');
+  if (pasajerosSelect) {
+    const closePopupButton = qrPopup ? qrPopup.querySelector('.close') : null;
+    pasajerosSelect.addEventListener('change', () => {
+      const value = pasajerosSelect.value;
+      // Oculta cualquier popup visible al cambiar el valor
+      if (qrPopup) {
+        qrPopup.style.display = 'none';
+      }
+      // Limpia el contenedor de edades antes de crear nuevos campos
+      if (edadContainer) {
+        edadContainer.innerHTML = '';
+      }
+      if (!value) {
+        return;
+      }
+      // Si se selecciona 'more', mostrar el popup con el código QR
+      if (value === 'more') {
+        if (qrPopup) {
+          qrPopup.style.display = 'flex';
+        }
+        return;
+      }
+      const num = parseInt(value, 10);
+      if (!isNaN(num) && num > 0) {
+        // Función para calcular la edad en años a partir de una fecha
+        const calcularEdad = (fecha) => {
+          const hoy = new Date();
+          let edad = hoy.getFullYear() - fecha.getFullYear();
+          const mes = hoy.getMonth() - fecha.getMonth();
+          if (mes < 0 || (mes === 0 && hoy.getDate() < fecha.getDate())) {
+            edad--;
+          }
+          return edad;
+        };
+        // Calcular la fecha máxima (hoy) en formato ISO para limitar el campo de fecha
+        const hoyISO = new Date().toISOString().split('T')[0];
+        for (let i = 1; i <= num; i++) {
+          const entry = document.createElement('div');
+          entry.className = 'age-entry';
+          // Etiqueta para el campo de fecha de nacimiento
+          const label = document.createElement('label');
+          label.setAttribute('for', `dob_${i}`);
+          label.textContent = `Fecha de nacimiento pasajero ${i}`;
+          // Campo de fecha de nacimiento
+          const dateInput = document.createElement('input');
+          dateInput.type = 'date';
+          dateInput.id = `dob_${i}`;
+          dateInput.name = `dob_${i}`;
+          dateInput.max = hoyISO;
+          dateInput.required = true;
+          // Elemento para mostrar la edad calculada
+          const ageDisplay = document.createElement('span');
+          ageDisplay.className = 'age-output';
+          ageDisplay.id = `ageOutput_${i}`;
+          // Campo oculto para almacenar la edad calculada
+          const hiddenAge = document.createElement('input');
+          hiddenAge.type = 'hidden';
+          hiddenAge.id = `edad_${i}`;
+          hiddenAge.name = `edad_${i}`;
+          // Evento para actualizar la edad cuando cambia la fecha de nacimiento
+          dateInput.addEventListener('change', (ev) => {
+            const valor = ev.target.value;
+            if (valor) {
+              const fechaNac = new Date(valor);
+              const edadCalculada = calcularEdad(fechaNac);
+              hiddenAge.value = edadCalculada;
+              ageDisplay.textContent = `${edadCalculada} años`;
+            } else {
+              hiddenAge.value = '';
+              ageDisplay.textContent = '';
+            }
+          });
+          // Añadir elementos al contenedor
+          entry.appendChild(label);
+          entry.appendChild(dateInput);
+          entry.appendChild(ageDisplay);
+          entry.appendChild(hiddenAge);
+          edadContainer.appendChild(entry);
+        }
+      }
+    });
+    // Cerrar el popup cuando se hace clic en la 'x'
+    if (closePopupButton) {
+      closePopupButton.addEventListener('click', () => {
+        qrPopup.style.display = 'none';
+      });
+    }
+  }
 });

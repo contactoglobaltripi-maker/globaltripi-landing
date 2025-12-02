@@ -289,6 +289,66 @@ h2 {
   background-color: #3a923f;
 }
 
+/* Estilos para el popup de QR utilizado cuando se seleccionan grupos mayores a 10 pasajeros */
+.qr-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+}
+
+.qr-popup-content {
+  position: relative;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.qr-popup-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.qr-popup-content .close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Contenedor y entradas para las edades de los pasajeros */
+/* El contenedor utiliza un grid para optimizar el espacio y colocar varias entradas en columnas */
+#edadContainer {
+  /* El contenedor ocupa todo el ancho de la cuadrícula del formulario para ofrecer más espacio */
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+}
+
+#edadContainer .age-entry {
+  display: flex;
+  flex-direction: column;
+}
+
+#edadContainer .age-entry .age-output {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
 /* Footer redesigned with green accent line */
 .footer {
   background-color: #f9f9f9;
