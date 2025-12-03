@@ -10,29 +10,35 @@ module.exports = async (req, res) => {
     // El cuerpo puede venir como string o como objeto
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
-    // Fila con la info principal de la cotización
+    // Mapeamos los nombres de campos del formulario a columnas del Excel
     const row = {
-      Origen: body.origin || '',
-      Destino: body.destination || '',
-      Pasajeros: body.passengers || '',
-      'Fecha salida': body.departureDate || '',
-      'Fecha regreso': body.returnDate || '',
+      Origen: body.origen || '',
+      Destino: body.destino || '',
+      Pasajeros: body.pasajeros || '',
+      'Fecha salida': body.fechaInicio || '',
+      'Fecha regreso': body.fechaFin || '',
       'Correo cliente': body.email || '',
-      WhatsApp: body.whatsapp || '',
-      'SIM física': body.simType === 'physical' ? 'Sí' : 'No',
-      'eSIM virtual': body.simType === 'virtual' ? 'Sí' : 'No',
-      'Fechas nacimiento': (body.passengerBirthdates || []).join(', ')
+      'SIM física': body.sim ? 'Sí' : 'No',
+      'eSIM virtual': body.esim ? 'Sí' : 'No',
+      'Fechas nacimiento': '' // se rellenará a continuación
     };
 
-    // Crear libro y hoja de Excel en memoria
+    // Recoger fechas de nacimiento de los campos dob_1, dob_2, etc.
+    const fechasNac = [];
+    Object.keys(body).forEach((key) => {
+      if (key.startsWith('dob_')) {
+        fechasNac.push(body[key]);
+      }
+    });
+    row['Fechas nacimiento'] = fechasNac.join(', ');
+
+    // Crear el libro de Excel en memoria
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.json_to_sheet([row]);
     XLSX.utils.book_append_sheet(wb, ws, 'Cotizacion');
-
-    // Generar buffer del archivo .xlsx
     const buffer = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
 
-    // Transporter SMTP usando las variables de entorno de Vercel
+    // Configurar transporte SMTP con las variables de entorno
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT || '465', 10),
@@ -45,12 +51,12 @@ module.exports = async (req, res) => {
 
     const toEmail = process.env.TO_EMAIL || process.env.SMTP_USER;
 
-    // Enviar correo con el Excel adjunto
+    // Enviar correo con el archivo adjunto
     await transporter.sendMail({
       from: `"GlobalTripi" <${process.env.SMTP_USER}>`,
       to: toEmail,
       subject: 'Nueva solicitud de cotización desde la web',
-      text: 'Adjuntamos el archivo con la solicitud de cotización.',
+      text: 'Adjuntamos archivo con los datos de la cotización.',
       attachments: [
         {
           filename: 'cotizacion-globaltripi.xlsx',
@@ -60,8 +66,8 @@ module.exports = async (req, res) => {
     });
 
     return res.status(200).json({ ok: true });
-  } catch (error) {
-    console.error('Error en /api/sendQuote:', error);
+  } catch (err) {
+    console.error('Error en /api/sendQuote:', err);
     return res.status(500).json({ error: 'Error enviando la cotización' });
   }
 };
