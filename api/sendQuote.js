@@ -1,69 +1,67 @@
-const XLSX = require('xlsx');
 const nodemailer = require('nodemailer');
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
+const XLSX = require('xlsx');
 
-/*
- * Endpoint API para procesar las solicitudes de cotización.
- * Recibe los datos del formulario, genera un archivo Excel
- * con la información y lo envía por correo electrónico a la
- * dirección especificada en las variables de entorno.
- */
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
-    res.status(405).send('Method Not Allowed');
-    return;
+    return res.status(405).json({ error: 'Method Not Allowed' });
   }
-  let data = req.body;
-  // El cuerpo puede venir como cadena; convertir a objeto
-  if (typeof data === 'string') {
-    try {
-      data = JSON.parse(data);
-    } catch (err) {
-      res.status(400).json({ success: false, error: 'Invalid JSON body' });
-      return;
-    }
-  }
+
   try {
-    // Generar libro y hoja de cálculo
-    const workbook = XLSX.utils.book_new();
-    const sheet = XLSX.utils.json_to_sheet([data]);
-    XLSX.utils.book_append_sheet(workbook, sheet, 'Cotizacion');
-    const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
-    // Guardar en archivo temporal
-    const filePath = path.join(os.tmpdir(), `cotizacion_${Date.now()}.xlsx`);
-    fs.writeFileSync(filePath, buffer);
-    // Configurar transporte de correo
+    // El cuerpo puede venir como string o como objeto
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+
+    // Fila con la info principal de la cotización
+    const row = {
+      Origen: body.origin || '',
+      Destino: body.destination || '',
+      Pasajeros: body.passengers || '',
+      'Fecha salida': body.departureDate || '',
+      'Fecha regreso': body.returnDate || '',
+      'Correo cliente': body.email || '',
+      WhatsApp: body.whatsapp || '',
+      'SIM física': body.simType === 'physical' ? 'Sí' : 'No',
+      'eSIM virtual': body.simType === 'virtual' ? 'Sí' : 'No',
+      'Fechas nacimiento': (body.passengerBirthdates || []).join(', ')
+    };
+
+    // Crear libro y hoja de Excel en memoria
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet([row]);
+    XLSX.utils.book_append_sheet(wb, ws, 'Cotizacion');
+
+    // Generar buffer del archivo .xlsx
+    const buffer = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+
+    // Transporter SMTP usando las variables de entorno de Vercel
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '587', 10),
-      secure: process.env.SMTP_SECURE === 'true',
+      port: parseInt(process.env.SMTP_PORT || '465', 10),
+      secure: String(process.env.SMTP_SECURE).toLowerCase() === 'true',
       auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
+        pass: process.env.SMTP_PASS
+      }
     });
-    // Configurar opciones de correo
-    const mailOptions = {
-      from: process.env.SMTP_USER,
-      to: process.env.TO_EMAIL || 'contacto@globaltripi.co',
-      subject: 'Nueva solicitud de cotización de GlobalTripi',
-      text: 'Adjunto encontrarás la solicitud en formato Excel.',
+
+    const toEmail = process.env.TO_EMAIL || process.env.SMTP_USER;
+
+    // Enviar correo con el Excel adjunto
+    await transporter.sendMail({
+      from: `"GlobalTripi" <${process.env.SMTP_USER}>`,
+      to: toEmail,
+      subject: 'Nueva solicitud de cotización desde la web',
+      text: 'Adjuntamos el archivo con la solicitud de cotización.',
       attachments: [
         {
-          filename: 'cotizacion.xlsx',
-          path: filePath,
-        },
-      ],
-    };
-    // Enviar correo
-    await transporter.sendMail(mailOptions);
-    // Eliminar archivo temporal
-    fs.unlinkSync(filePath);
-    res.status(200).json({ success: true });
+          filename: 'cotizacion-globaltripi.xlsx',
+          content: buffer
+        }
+      ]
+    });
+
+    return res.status(200).json({ ok: true });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: error.message });
+    console.error('Error en /api/sendQuote:', error);
+    return res.status(500).json({ error: 'Error enviando la cotización' });
   }
 };
